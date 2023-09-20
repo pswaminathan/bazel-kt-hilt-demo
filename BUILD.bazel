@@ -1,0 +1,11 @@
+load("@dagger//:workspace_defs.bzl", "hilt_android_rules")
+load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "define_kt_toolchain")
+
+define_kt_toolchain(
+    name = "kotlin_toolchain",
+    api_version = "1.5",
+    jvm_target = "11",
+    language_version = "1.5",
+)
+
+hilt_android_rules()

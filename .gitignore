@@ -4,6 +4,7 @@ build/
 
 # Local configuration file (sdk path, etc)
 local.properties
+local.bazelrc
 
 # Log/OS Files
 *.log
@@ -22,6 +23,13 @@ misc.xml
 deploymentTargetDropDown.xml
 render.experimental.xml
 
+# Directories for the Bazel IntelliJ plugin containing the generated
+# IntelliJ project files and plugin configuration. Seperate directories are
+# for the IntelliJ, Android Studio and CLion versions of the plugin.
+.ijwb
+.aswb
+.clwb
+
 # Keystore files
 *.jks
 *.keystore
@@ -31,3 +39,7 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Ignore all bazel-* symlinks. There is no full list since this can change
+# based on the name of the directory bazel is cloned into.
+/bazel-*
