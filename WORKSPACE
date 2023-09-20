@@ -27,10 +27,22 @@ _DAGGER_TAG = "2.48"
 
 http_archive(
     name = "dagger",
-    sha256 = "5f9d43b9a7d940a44ca9d5f4e08758b6141e7cb57ac0a2b8bbab02c9ba554c0e",
-    strip_prefix = "dagger-dagger-%s" % _DAGGER_TAG,
-    urls = ["https://github.com/google/dagger/archive/refs/tags/dagger-%s.zip" % _DAGGER_TAG],
+    sha256 = "a796141af307e2b3a48b64a81ee163d96ffbfb41a71f0ea9cf8d26f930c80ca6",
+    strip_prefix = "dagger-use-generated-class-instead-of-superclass",
+    urls = ["https://github.com/pswaminathan/dagger/archive/refs/heads/use-generated-class-instead-of-superclass.zip"],
 )
+
+load("@dagger//:repositories.bzl", "dagger_repositories")
+
+dagger_repositories()
+
+load("@dagger//:workspace_defs.bzl", "dagger_workspace")
+
+dagger_workspace()
+
+load("@dagger//:workspace_defs_2.bzl", "dagger_workspace_2")
+
+dagger_workspace_2()
 
 load(
     "@dagger//:workspace_defs.bzl",

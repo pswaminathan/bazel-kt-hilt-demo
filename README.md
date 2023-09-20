@@ -33,3 +33,32 @@ INFO: Elapsed time: 80.979s, Critical Path: 26.85s
 INFO: 587 processes: 47 internal, 479 darwin-sandbox, 61 worker.
 FAILED: Build did NOT complete successfully
 ```
+
+## Identifying and Working Around the Issue
+
+Using the branch `use-generated-class-instead-of-superclass` forked at pswaminathan/dagger
+
+```
+bazel build app
+...
+INFO: Analyzed target //app:app (216 packages loaded, 2655 targets configured).
+INFO: Found 1 target...
+...
+entry point element: com.example.demo.MainActivity
+entry point superclass: java.lang.Object
+entry point element: com.example.demo.MainActivity actually extends: Hilt_MainActivity
+entry point element: com.example.demo.DemoApplication
+entry point superclass: java.lang.Object
+entry point element: com.example.demo.DemoApplication actually extends: Hilt_DemoApplication
+INFO: From KotlinCompile //app:lib_kt { kt: 2, java: 0, srcjars: 0 } for armeabi-v7a:
+warning: language version 1.5 is deprecated and its support will be removed in a future version of Kotlin
+warning: language version 1.5 is deprecated and its support will be removed in a future version of KotlinTarget //app:app up-to-date:
+  bazel-bin/app/app_deploy.jar
+  bazel-bin/app/app_unsigned.apk
+  bazel-bin/app/app.apk
+INFO: Elapsed time: 84.406s, Critical Path: 48.51s
+INFO: 890 processes: 8 internal, 618 darwin-sandbox, 264 worker.
+INFO: Build completed successfully, 890 total actions
+```
+
+This branch simply works around the issue by using the generated name. But it is just a demonstration that a change in dagger can make this build. Just using the generated name doesn't actually resolve it in the way it should.
